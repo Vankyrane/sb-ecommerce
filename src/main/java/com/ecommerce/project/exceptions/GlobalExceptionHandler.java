@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice //Specialized version of ControllerAdvice should be used for REST API's --> Global Exception interceptor
-
 public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> myMethodArgumentNotValidException(MethodArgumentNotValidException exception){
@@ -28,5 +27,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> myResourceNotFoundException(ResourceNotFoundException exception){
         String message = exception.getMessage();
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(APIException.class)
+    public ResponseEntity<String> myAPIException(APIException exception){
+        String message = exception.getMessage();
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 }
