@@ -38,5 +38,4 @@ public class CategoryController {
     public ResponseEntity<String> updateCategory(@RequestBody Category category, @PathVariable Long categoryId) {
         return new ResponseEntity<>("Category with category id : " + categoryId + " " + "updated", HttpStatus.OK);
     }
-
 }
